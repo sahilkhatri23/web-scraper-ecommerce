@@ -57,3 +57,11 @@ group :test do
 end
 
 gem "tailwindcss-rails", "~> 3.0"
+
+gem "nokogiri", "~> 1.17"
+
+gem "byebug", "~> 11.1"
+
+gem 'sidekiq'
+
+gem 'sidekiq-cron'

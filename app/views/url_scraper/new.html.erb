@@ -1,8 +1,9 @@
-<div style="background-image: url(<%= asset_path('background.jpg') %>);" class="w-full h-screen bg-center flex flex-col items-center py-32">
-  <h1 class = "lg:text-3xl text-xl text-blue-950 font-semibold mb-10">Scrape Categories and Products</h1>
+<div style="background-image: url(<%= asset_path('background.jpg') %>);" class="w-full h-screen bg-center bg-cover flex flex-col items-center justify-center py-8 px-4">
+  <h1 class="lg:text-3xl text-xl text-blue-950 font-semibold mb-10 text-center">Scrape Products Flipkart & Amazon</h1>
   <%= form_with url: url_scraper_index_path, method: :post, local: true do |form| %>
     <div class='flex flex-col gap-5 items-center px-10'>
-      <%= form.text_field :url, required: true, class: 'border border-sky-300 rounded-md lg:w-96 w-80', placeholder: 'Enter URL' %>
+      <%= form.text_field :url, required: true, class: 'border border-sky-300 rounded-md lg:w-96 w-80', placeholder: 'Enter Product URL' %>
+      <p class="text-xs text-gray-500 mt-2">Only Flipkart and Amazon URLs are supported.</p>
     
       <%= form.submit "Scrape", class: 'w-28 h-10 text-white text-base rounded-lg bg-sky-400 border border-sky-400 font-semibold flex items-center justify-center' %>
     </div>

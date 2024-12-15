@@ -3,4 +3,6 @@ class Product < ApplicationRecord
   belongs_to :seller, optional: true
 
   has_many_attached :images
+
+  validates :name, presence: true
 end

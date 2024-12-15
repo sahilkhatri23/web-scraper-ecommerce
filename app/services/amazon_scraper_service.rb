@@ -1,6 +1,6 @@
 class AmazonScraperService < ProductScraperService
   def scrape
-    document = fetch_document
+    document = fetch_document(@url)
 
     category_name = document.css('#wayfinding-breadcrumbs_feature_div ul.a-unordered-list li span.a-list-item a')[1].text.strip
     category = create_category(category_name)
@@ -34,7 +34,7 @@ class AmazonScraperService < ProductScraperService
 
   private
 
-  def fetch_document
+  def fetch_document(url)
     Nokogiri::HTML(URI.open(@url, "User-Agent" => @headers["User-Agent"]))
   end
 

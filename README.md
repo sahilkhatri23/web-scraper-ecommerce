@@ -26,7 +26,7 @@ Clone the repository to your local machine using the following command:
 
 ```bash
 git clone https://github.com/sahilkhatri23/web-scraper-ecommerce.git
-cd ecommerce-scraper
+cd web-scraper-ecommerce
 ```
 
 ### 2. Install Dependencies

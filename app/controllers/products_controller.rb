@@ -15,8 +15,6 @@ class ProductsController < ApplicationController
       @products = @products.where(category_id: params[:category])
     end
   
-    @products = @products.page(params[:page])
-  
     respond_to do |format|
       format.html
       format.js

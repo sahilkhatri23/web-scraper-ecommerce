@@ -50,11 +50,14 @@ class ProductScraperService
       seller: seller
     )
 
-    image_urls.each do |image_url|
-      product.images.attach(io: URI.open(image_url), filename: File.basename(image_url))
+    existing_images = product.images.count
+    unless existing_images > 0
+      image_urls.each do |image_url|
+        product.images.attach(io: URI.open(image_url), filename: File.basename(image_url))
+      end
     end
 
-    category.update(image: product.images.first.image) if category.image.blank?
+    category.update(image: product.images.first.blob) if category.image.blank?
 
     product
   end

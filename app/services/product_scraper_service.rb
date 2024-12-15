@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class ProductScraperService
   def initialize(url, headers = {})
     @url = url

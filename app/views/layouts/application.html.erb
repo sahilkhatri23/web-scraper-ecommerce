@@ -17,6 +17,22 @@
   </head>
 
   <body>
+    <!-- Flash messages -->
+    <div class="fixed top-0 left-0 w-full z-50">
+      <% if flash[:notice] %>
+        <div class="bg-green-500 text-white p-4 text-center">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+      <% if flash[:alert] %>
+        <div class="bg-red-500 text-white p-4 text-center">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+    </div>
+
+    <!-- Header Section -->
     <div style="backdrop-filter: blur(20px);" class='w-full py-4 flex items-center justify-center px-5 bg-sky-200 bg-opacity-50 sticky border-b'>
       <a href="<%root_path%>">
         <div class='rounded-full py-2 px-4 flex items-center gap-2 bg-white'>
@@ -24,6 +40,8 @@
         </div>
       </a>
     </div>
+
+    <!-- Main Content -->
     <%= yield %>
   </body>
 </html>

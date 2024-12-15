@@ -1,0 +1,3 @@
+document.getElementById("product-grid").innerHTML = "<%= j render partial: 'product_grid', locals: { products: @products } %>";
+const searchInput = document.getElementById("search-input");
+if (searchInput) searchInput.focus();

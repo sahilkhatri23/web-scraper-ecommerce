@@ -1,4 +1,52 @@
-<div>
-  <h1 class="font-bold text-4xl">Porducts#index</h1>
-  <p>Find me in app/views/porducts/index.html.erb</p>
+<div class="container mx-auto px-4 py-8">
+  <!-- Breadcrumb -->
+  <nav class="text-sm text-gray-500 mb-8">
+    <a href="/" class="hover:text-blue-500">Home</a> &gt;
+    <span class="font-semibold text-gray-800">Products</span>
+  </nav>
+
+  <!-- Search and Filter -->
+  <div class="mb-8 flex flex-col lg:flex-row justify-between items-center gap-4">
+    <!-- Search Bar -->
+    <form id="search-form" action="<%= products_path %>" method="get" data-controller="search" data-remote="true" data-search-target="form" class="w-full lg:w-1/2">
+      <input type="text" name="search" id="search-input" 
+            value="<%= params[:search] %>" 
+            placeholder="Search products..."
+            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            data-search-target="input" data-action="input->search#search">
+    </form>
+
+    <!-- Category Filter -->
+    <form action="<%= products_path %>" method="get" class="w-full lg:w-1/2 flex justify-end">
+      <select name="category" onchange="this.form.submit()" class="p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+        <option value="">All Categories</option>
+        <% @categories.each do |category| %>
+          <option value="<%= category.id %>" <%= "selected" if params[:category].to_i == category.id %>>
+            <%= category.name %>
+          </option>
+        <% end %>
+      </select>
+    </form>
+  </div>
+
+  <!-- Product Grid -->
+  <div id="product-grid">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+      <% @products.each do |product| %>
+        <div class="border rounded-lg overflow-hidden shadow-lg">
+          <%= link_to product_path(product) do %>
+            <!-- Product Image -->
+            <div class="aspect-w-1 aspect-h-1 bg-gray-200">
+              <%= image_tag product.images.attached? ? url_for(product.images.first) : 'https://via.placeholder.com/300', alt: product.name, class: "w-full h-full object-cover" %>
+            </div>
+            <!-- Product Details -->
+            <div class="p-4">
+              <h3 class="text-lg font-semibold text-gray-800 truncate"><%= product.name %></h3>
+              <p class="text-green-600 font-bold mt-2">₹ <%= number_with_delimiter(product.price.to_i, delimiter: ',') %></p>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>

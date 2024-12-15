@@ -1,6 +1,6 @@
 class AmazonScraperService < ProductScraperService
   def scrape
-    document = fetch_document(@url)
+    document = fetch_document
 
     category_name = document.css('#wayfinding-breadcrumbs_feature_div ul.a-unordered-list li span.a-list-item a')[1].text.strip
     category = create_category(category_name)
@@ -34,13 +34,13 @@ class AmazonScraperService < ProductScraperService
 
   private
 
-  def fetch_document(url)
-    Nokogiri::HTML(URI.open(url, "User-Agent" => @headers["User-Agent"]))
+  def fetch_document
+    Nokogiri::HTML(URI.open(@url, "User-Agent" => @headers["User-Agent"]))
   end
 
   def extract_price(document)
     price_element = document.at_css('.a-price .a-offscreen').text.strip
-    price_element.gsub(/[^\d]/, '').to_i / 100
+    price_element.gsub(/[^\d]/, '').to_i
   end
 
   def extract_seller_info(document)

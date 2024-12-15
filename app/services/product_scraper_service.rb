@@ -10,7 +10,7 @@ class ProductScraperService
 
     case domain
     when "flipkart"
-      FlipkartScraperService.new(@url, headers).scrape
+      FlipkartScraperService.new(@url).scrape
     when "amazon"
       AmazonScraperService.new(@url, headers).scrape
     else
@@ -26,16 +26,16 @@ class ProductScraperService
   end
 
   def create_category(name)
-    Category.find_or_create_by(name: name.strip)
+    Category.find_or_create_by(name: name&.strip)
   end
 
   def create_seller(name:, rating:, policy:, additional_info:)
-    seller = Seller.find_or_initialize_by(name: name.strip)
+    seller = Seller.find_or_initialize_by(name: name&.strip)
     seller.update!(
       rating: rating,
       policy: policy,
       additional_info: additional_info
-    )
+    ) rescue nil
     seller
   end
 

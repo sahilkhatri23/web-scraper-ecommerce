@@ -65,3 +65,5 @@ gem "byebug", "~> 11.1"
 gem 'sidekiq'
 
 gem 'sidekiq-cron'
+
+gem 'selenium-webdriver'

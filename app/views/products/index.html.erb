@@ -11,6 +11,7 @@
     <form id="search-form" action="<%= products_path %>" method="get" data-controller="search" data-remote="true" data-search-target="form" class="w-full lg:w-1/2">
       <input type="text" name="search" id="search-input" 
             value="<%= params[:search] %>" 
+            focus=true
             placeholder="Search products..."
             class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
             data-search-target="input" data-action="input->search#search">
@@ -50,3 +51,12 @@
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener("turbo:load", () => {
+    const searchInput = document.querySelector("#search-input");
+    if (searchInput) {
+      searchInput.focus();
+    }
+  });
+</script>

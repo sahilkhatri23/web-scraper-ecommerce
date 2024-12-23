@@ -12,4 +12,3 @@ class ProductUpdateWorker
     end
   end
 end
-  

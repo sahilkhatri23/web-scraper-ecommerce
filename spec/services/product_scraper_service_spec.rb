@@ -101,7 +101,7 @@ RSpec.describe ProductScraperService, type: :service do
     let(:seller) { create(:seller) }
     let(:image_path) { Rails.root.join('spec', 'fixtures', 'files', 'sample_image.png') }
     let(:image) { fixture_file_upload(image_path, 'image/png') }
-    let(:image_urls) { [image] }
+    let(:image_urls) { [ image ] }
 
     context 'when creating a new product' do
       it 'creates a new product' do

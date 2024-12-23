@@ -1,10 +1,10 @@
-require 'nokogiri'
-require 'open-uri'
+require "nokogiri"
+require "open-uri"
 
 class UrlScraperController < ApplicationController
   def new
   end
-  
+
   def create
     url = params[:url]
     product_scraper_service = ProductScraperService.new(url)

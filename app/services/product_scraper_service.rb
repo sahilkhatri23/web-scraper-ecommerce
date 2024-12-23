@@ -1,4 +1,4 @@
-require 'open-uri'
+require "open-uri"
 
 class ProductScraperService
   def initialize(url, headers = {})
@@ -24,7 +24,7 @@ class ProductScraperService
 
   def extract_domain(url)
     uri = URI.parse(url)
-    uri.host.split('.').second
+    uri.host.split(".").second
   end
 
   def create_category(name)

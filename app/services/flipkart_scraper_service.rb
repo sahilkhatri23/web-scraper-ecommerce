@@ -1,14 +1,14 @@
 require "nokogiri"
-require 'selenium-webdriver'
+require "selenium-webdriver"
 
 class FlipkartScraperService < ProductScraperService
   def scrape
     document = fetch_document
 
-    category_name = document.css('.r2CdBx .R0cyWM').map(&:text)[2].strip
+    category_name = document.css(".r2CdBx .R0cyWM").map(&:text)[2].strip
     category = create_category(category_name)
 
-    product_name = document.css('h1._6EBuvT .VU-ZEz').text.strip
+    product_name = document.css("h1._6EBuvT .VU-ZEz").text.strip
     price = extract_price(document)
     seller_name, seller_rating, seller_policy, additional_info = extract_seller_info(document)
 
@@ -34,9 +34,9 @@ class FlipkartScraperService < ProductScraperService
 
   def fetch_document
     options = Selenium::WebDriver::Chrome::Options.new
-    options.add_argument('--headless')
-    options.add_argument('--disable-gpu')
-    options.add_argument('--no-sandbox')
+    options.add_argument("--headless")
+    options.add_argument("--disable-gpu")
+    options.add_argument("--no-sandbox")
     driver = Selenium::WebDriver.for :chrome, options: options
     driver.get(@url)
     driver.manage.timeouts.implicit_wait = 10
@@ -45,20 +45,20 @@ class FlipkartScraperService < ProductScraperService
   end
 
   def extract_price(document)
-    price_element = document.css('.Nx9bqj.CxhGGd').text.strip
-    price_element.gsub(/[^\d]/, '').to_i
+    price_element = document.css(".Nx9bqj.CxhGGd").text.strip
+    price_element.gsub(/[^\d]/, "").to_i
   end
 
   def extract_seller_info(document)
-    seller_name = document.at_css('#sellerName span > span')&.text.strip
-    seller_rating = document.at_css('#sellerName .XQDdHH')&.text.strip.to_f
-    seller_policy = document.at_css('.YhUgfO')&.text.strip
-    additional_info = document.at_css('.fke1mx')&.text.strip
+    seller_name = document.at_css("#sellerName span > span")&.text.strip
+    seller_rating = document.at_css("#sellerName .XQDdHH")&.text.strip.to_f
+    seller_policy = document.at_css(".YhUgfO")&.text.strip
+    additional_info = document.at_css(".fke1mx")&.text.strip
 
-    [seller_name, seller_rating, seller_policy, additional_info]
+    [ seller_name, seller_rating, seller_policy, additional_info ]
   end
 
   def extract_images(document)
-    document.css('.ZqtVYK img').map { |img| img['src'] }
+    document.css(".ZqtVYK img").map { |img| img["src"] }
   end
 end

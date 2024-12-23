@@ -39,7 +39,7 @@ RSpec.describe FlipkartScraperService, type: :service do
         price: 1000,
         category: category,
         seller: seller,
-        image_urls: ['http://example.com/image.jpg']
+        image_urls: [ 'http://example.com/image.jpg' ]
       )
     end
   end

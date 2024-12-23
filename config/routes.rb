@@ -1,13 +1,13 @@
-require 'sidekiq/web'
+require "sidekiq/web"
 
 Rails.application.routes.draw do
   get "porducts/show"
   get "porducts/index"
-  mount Sidekiq::Web => '/sidekiq'
-  
+  mount Sidekiq::Web => "/sidekiq"
+
   root "url_scraper#home"
-  resources :url_scraper, only: [:create, :new]
-  resources :products, only: [:show, :index]
+  resources :url_scraper, only: [ :create, :new ]
+  resources :products, only: [ :show, :index ]
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

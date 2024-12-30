@@ -65,7 +65,7 @@ end
 
 gem "tailwindcss-rails", "~> 3.0"
 
-gem "nokogiri", "~> 1.17"
+gem "nokogiri", "~> 1.18"
 
 gem "byebug", "~> 11.1"
 
